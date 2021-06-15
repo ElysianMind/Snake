@@ -27,11 +27,6 @@ module.exports = {
     publicPath: defaultSettings.publicPath,
     noInfo: false
   },
-  resolve: {
-    extensions: ['', '.js', '.jsx'],
-    alias: {
-      styles: `${defaultSettings.srcPath}/assets/styles/`
-    }
-  },
+  resolve: {},
   module: {}
 };

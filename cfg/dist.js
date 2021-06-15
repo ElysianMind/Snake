@@ -7,9 +7,6 @@ let baseConfig = require('./base');
 let defaultSettings = require('./defaults');
 
 // Add needed plugins here
-let BowerWebpackPlugin = require('bower-webpack-plugin');
-let CompressionPlugin = require('compression-webpack-plugin');
-
 let config = Object.assign({}, baseConfig, {
   entry: path.join(__dirname, '../src/index'),
   cache: false,
@@ -19,27 +16,17 @@ let config = Object.assign({}, baseConfig, {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
     }),
-    new BowerWebpackPlugin({
-      searchResolveModulesDirectories: false
-    }),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new CompressionPlugin({
-      asset: "[path].gz[query]",
-      algorithm: "gzip",
-      test: /\.js$|\.css$|\.html$/,
-      threshold: 10240,
-      minRatio: 0.8
-      })
+    new webpack.NoErrorsPlugin()
   ],
   module: defaultSettings.getDefaultModules()
 });
 
 // Add needed loaders to the defaults here
 config.module.loaders.push({
-  test: /\.(js|jsx)$/,
+  test: /\.(js)$/,
   loader: 'babel',
   include: [].concat(
     config.additionalPaths,

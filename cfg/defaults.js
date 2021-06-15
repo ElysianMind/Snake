@@ -18,25 +18,12 @@ function getDefaultModules() {
   return {
     preLoaders: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js)$/,
         include: srcPath,
         loader: 'eslint-loader'
       }
     ],
-    loaders: [
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
-      {
-        test: /\.(png|jpg|gif|ttf|woff|woff2)$/,
-        loader: 'url-loader?limit=8192'
-      },
-      {
-        test: /\.(mp4|ogg|svg)$/,
-        loader: 'file-loader'
-      }
-    ]
+    loaders: []
   };
 }
 
