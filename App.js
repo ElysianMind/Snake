@@ -57,18 +57,19 @@ function component(width, height, color, x, y, type) {
     this.width = width;
     this.height = height;
     this.x = x;
-    this.y = y; 
+    this.y = y;
     this.size = [];
     this.update = function(element){
         ctx = myGameArea.context;
         ctx.fillStyle = color;
         if(element == "snake"){
-            
+
             for(let i = 0; i < this.size.length; i++){
                 this.size[i] = this.size[i+1];
-            } 
+            }
 
             this.size[score -1] = {x: this.x,y:this.y}
+
         }
         ctx.fillRect(this.x, this.y, this.width, this.height);
         if(this.x > myGameArea.canvas.width){
@@ -87,26 +88,26 @@ function component(width, height, color, x, y, type) {
     this.newPos = function(sec) {
     switch (this.direction) {
         case 'right':
-            this.x += movementSpeed * sec;
+            this.x += movementSpeed *sec;
             break;
         case 'left':
-            this.x -= movementSpeed * sec;
+            this.x -= movementSpeed *sec;
             break;
         case 'up':
-            this.y -= movementSpeed * sec; 
+            this.y -= movementSpeed *sec;
             break;
         case 'down':
-            this.y += movementSpeed * sec;
+            this.y += movementSpeed *sec;
             break;
         default:
             break;
         }
-    }    
+    }
 
 }
 
 function updateGameArea(timestamp) {
-    console.log((timestamp - oldTimeStamp) + "ms")
+    //console.log((timestamp - oldTimeStamp) + "ms")
     secondsPassed = (timestamp - oldTimeStamp)/ 1000;
     secondsPassed = Math.min(secondsPassed, 0.1);
     myGameArea.clear();
@@ -114,7 +115,7 @@ function updateGameArea(timestamp) {
     snake.update("snake");
     fruit.update();
 
-    if (snake.x == fruit.x && snake.y == fruit.y){    
+    if ( fruit.x < snake.x && snake.x < (fruit.x + fruit.width) && fruit.y < snake.y && snake.y < (fruit.y + fruit.height)){
         this.score++
         console.log(this.score);
         fruit.x = Math.floor(Math.random() * 40)*13;
