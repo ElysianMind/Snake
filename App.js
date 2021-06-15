@@ -47,7 +47,7 @@ var myGameArea = {
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         oldTimeStamp  = Date.now
-        this.interval = requestAnimationFrame(updateGameArea);
+        this.interval = setInterval(updateGameArea,250) //requestAnimationFrame(updateGameArea);
         },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -64,11 +64,15 @@ function component(width, height, color, x, y, type) {
         ctx.fillStyle = color;
         if(element == "snake"){
 
-            for(let i = 0; i < this.size.length; i++){
+            for(let i = 0; i < this.size.length - 1; i++){
                 this.size[i] = this.size[i+1];
             }
 
             this.size[score -1] = {x: this.x,y:this.y}
+
+            for(let i = 0; i < this.size.length - 1; i++){
+               ctx.fillRect(this.size[i].x, this.size[i].y, this.width, this.height);
+            }
 
         }
         ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -88,16 +92,16 @@ function component(width, height, color, x, y, type) {
     this.newPos = function(sec) {
     switch (this.direction) {
         case 'right':
-            this.x += movementSpeed *sec;
+            this.x += 13 //movementSpeed *sec;
             break;
         case 'left':
-            this.x -= movementSpeed *sec;
+            this.x -= 13 //movementSpeed *sec;
             break;
         case 'up':
-            this.y -= movementSpeed *sec;
+            this.y -= 13 //movementSpeed *sec;
             break;
         case 'down':
-            this.y += movementSpeed *sec;
+            this.y += 13 //movementSpeed *sec;
             break;
         default:
             break;
@@ -115,12 +119,12 @@ function updateGameArea(timestamp) {
     snake.update("snake");
     fruit.update();
 
-    if ( fruit.x < snake.x && snake.x < (fruit.x + fruit.width) && fruit.y < snake.y && snake.y < (fruit.y + fruit.height)){
+    if ( fruit.x <= snake.x && snake.x <= (fruit.x + fruit.width) && fruit.y <= snake.y && snake.y <= (fruit.y + fruit.height)){
         this.score++
         console.log(this.score);
         fruit.x = Math.floor(Math.random() * 40)*13;
         fruit.y = Math.floor(Math.random() * 40)*13;
     }
     oldTimeStamp = timestamp;
-    requestAnimationFrame(updateGameArea)
+    //requestAnimationFrame(updateGameArea)
 }
