@@ -49,7 +49,7 @@ var myGameArea = {
   start: function () {
     this.canvas.width = 520;
     this.canvas.height = 520;
-    this.canvas.style['background-color'] = 'rgba(0,0,0,.15)';
+    this.canvas.style['background-color'] = 'rgba(0,0,0,.1)';
     this.columns = this.canvas.width / colNum;
     this.rows = this.canvas.height / rowNum;
     this.context = this.canvas.getContext("2d");
