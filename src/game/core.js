@@ -1,6 +1,53 @@
 // -App.js -------------------------------------------------------------------------------------------------------------
 console.log(' %c SNAKE 2021', 'font-weight: bold; font-size: 14px;color: rgba(0,0,0,1); text-shadow: 1px 1px 0 rgb(200, 200,200)');
 
+class Component {
+  constructor() {
+    this.x = 0;
+    this.y = 0;
+  }
+
+  quemSouEu() {
+    console.info('Não sei quem sou!');
+  }
+
+}
+
+class Snake extends Component {
+  constructor() {
+    super();
+    this.lives = 3;
+  }
+
+  /**  override */
+  quemSouEu() {
+    console.info('Sou uma cobra');
+  }
+}
+
+class Fruit extends Component {
+  constructor(points, name) {
+    super();
+    this.points = points;
+    this.name = name;
+  }
+
+  quemSouEu() {
+    if (this.name) {
+      console.info('Sou um(a)' + this.name);
+    } else {
+      super.quemSouEu();
+    }
+  }
+}
+
+snake = new Snake();
+snake.quemSouEu();
+
+banana = new Fruit(10, 'Banana');
+banana.quemSouEu();
+
+
 var fruit;
 var snake;
 var score = 0;
@@ -38,9 +85,9 @@ function startGame() {
 var oldTimeStamp;
 var CANVAS_ID = 'my-canvas';
 var myGameArea = {
-  canvas: (function(){
+  canvas: (function () {
     var canvas = document.getElementById(CANVAS_ID);
-    if(canvas == void 0){ // void 0 == null == undefined
+    if (canvas == void 0) { // void 0 == null == undefined
       canvas = document.createElement("canvas");
       canvas.id = CANVAS_ID;
     }
@@ -132,6 +179,7 @@ function updateGameArea(timestamp) {
   oldTimeStamp = timestamp;
   requestAnimationFrame(updateGameArea)
 }
+
 // -App.js ----------------------------------------------------------------------------------------------------------EOF
 module.exports.start = () => {
   startGame();
