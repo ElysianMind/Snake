@@ -1,4 +1,4 @@
-
+// -App.js -------------------------------------------------------------------------------------------------------------
 console.log(' %c SNAKE 2021', 'font-weight: bold; font-size: 14px;color: rgba(0,0,0,1); text-shadow: 1px 1px 0 rgb(200, 200,200)');
 
 var fruit;
@@ -40,7 +40,7 @@ var CANVAS_ID = 'my-canvas';
 var myGameArea = {
   canvas: (function(){
     var canvas = document.getElementById(CANVAS_ID);
-    if(canvas == void 0){
+    if(canvas == void 0){ // void 0 == null == undefined
       canvas = document.createElement("canvas");
       canvas.id = CANVAS_ID;
     }
@@ -49,7 +49,7 @@ var myGameArea = {
   start: function () {
     this.canvas.width = 520;
     this.canvas.height = 520;
-    this.canvas.style['background-color'] = 'rgba(0,0,0,.1)';
+    this.canvas.style['background-color'] = 'rgba(0,0,0,.15)';
     this.columns = this.canvas.width / colNum;
     this.rows = this.canvas.height / rowNum;
     this.context = this.canvas.getContext("2d");
@@ -132,7 +132,7 @@ function updateGameArea(timestamp) {
   oldTimeStamp = timestamp;
   requestAnimationFrame(updateGameArea)
 }
-
+// -App.js ----------------------------------------------------------------------------------------------------------EOF
 module.exports.start = () => {
   startGame();
 };
