@@ -41,10 +41,10 @@ class Fruit extends Component {
   }
 }
 
-snake = new Snake();
-snake.quemSouEu();
+const _snake = new Snake();
+_snake.quemSouEu();
 
-banana = new Fruit(10, 'Banana');
+const banana = new Fruit(10, );
 banana.quemSouEu();
 
 
