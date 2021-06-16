@@ -23,7 +23,10 @@ function getDefaultModules() {
         loader: 'eslint-loader'
       }
     ],
-    loaders: []
+    loaders: [{
+      test: /\.js?$/,
+      loader: 'babel'
+    }]
   };
 }
 

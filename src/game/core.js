@@ -1,5 +1,5 @@
 
-console.log(' %c André Fernandes', 'font-weight: bold; font-size: 14px;color: rgba(0,0,0,1); text-shadow: 1px 1px 0 rgb(200, 200,200)');
+console.log(' %c SNAKE 2021', 'font-weight: bold; font-size: 14px;color: rgba(0,0,0,1); text-shadow: 1px 1px 0 rgb(200, 200,200)');
 
 var fruit;
 var snake;
@@ -35,19 +35,26 @@ function startGame() {
 
 }
 
-var currentDate;
-
+var oldTimeStamp;
+var CANVAS_ID = 'my-canvas';
 var myGameArea = {
-  canvas: document.createElement("canvas"),
+  canvas: (function(){
+    var canvas = document.getElementById(CANVAS_ID);
+    if(canvas == void 0){
+      canvas = document.createElement("canvas");
+      canvas.id = CANVAS_ID;
+    }
+    return canvas;
+  })(),
   start: function () {
     this.canvas.width = 520;
     this.canvas.height = 520;
-    this.canvas.style['background-color'] = 'red';
+    this.canvas.style['background-color'] = 'rgba(0,0,0,.15)';
     this.columns = this.canvas.width / colNum;
     this.rows = this.canvas.height / rowNum;
     this.context = this.canvas.getContext("2d");
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-    oldTimeStamp = Date.now
+    oldTimeStamp = Date.now();
     this.interval = requestAnimationFrame(updateGameArea);
   },
   clear: function () {
@@ -62,7 +69,7 @@ function component(width, height, color, x, y, type) {
   this.y = y;
   this.size = [];
   this.update = function (element) {
-    ctx = myGameArea.context;
+    var ctx = myGameArea.context;
     ctx.fillStyle = color;
     if (element == "snake") {
 
@@ -109,7 +116,7 @@ function component(width, height, color, x, y, type) {
 
 function updateGameArea(timestamp) {
   //console.log((timestamp - oldTimeStamp) + "ms")
-  secondsPassed = (timestamp - oldTimeStamp) / 1000;
+  var secondsPassed = (timestamp - oldTimeStamp) / 1000;
   secondsPassed = Math.min(secondsPassed, 0.1);
   myGameArea.clear();
   snake.newPos(secondsPassed);
