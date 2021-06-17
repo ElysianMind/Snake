@@ -30,7 +30,7 @@ document.addEventListener('keydown', (event) => {
 function startGame() {
   myGameArea.start();
   fruit = new component(12, 12, 'green', Math.floor(Math.random() * 40) * 13, Math.floor(Math.random() * 40) * 13, 'fruit');
-  snake = new component(12, 12, '#234235', 0, 0);
+  snake = new component(12, 12, '#234235', 0, 0, 'snake');
 
 }
 

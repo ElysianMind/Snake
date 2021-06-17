@@ -1,4 +1,4 @@
-class Component {
+export default class Component {
   constructor() {
     this.x = 0;
     this.y = 0;
@@ -7,6 +7,3 @@ class Component {
   }
 }
 
-exports.Component = () =>{
-  Component
-}
