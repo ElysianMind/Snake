@@ -1,74 +1,29 @@
 // -App.js -------------------------------------------------------------------------------------------------------------
-console.log(' %c SNAKE 2021', 'font-weight: bold; font-size: 14px;color: rgba(0,0,0,1); text-shadow: 1px 1px 0 rgb(200, 200,200)');
-
-class Component {
-  constructor() {
-    this.x = 0;
-    this.y = 0;
-  }
-
-  quemSouEu() {
-    console.info('Não sei quem sou!');
-  }
-
-}
-
-class Snake extends Component {
-  constructor() {
-    super();
-    this.lives = 3;
-  }
-
-  /**  override */
-  quemSouEu() {
-    console.info('Sou uma cobra');
-  }
-}
-
-class Fruit extends Component {
-  constructor(points, name) {
-    super();
-    this.points = points;
-    this.name = name;
-  }
-
-  quemSouEu() {
-    if (this.name) {
-      console.info('Sou um(a)' + this.name);
-    } else {
-      super.quemSouEu();
-    }
-  }
-}
-
-const _snake = new Snake();
-_snake.quemSouEu();
-
-const banana = new Fruit(10, );
-banana.quemSouEu();
-
-
+//console.log(' %c SNAKE 2021', 'font-weight: bold; font-size: 14px;color: rgba(0,0,0,1); text-shadow: 1px 1px 0 rgb(200, 200,200)');
 var fruit;
 var snake;
 var score = 0;
 var colNum = 40;
 var rowNum = 40;
-var movementSpeed = 50
+var movementSpeed = 50;
+var snakeComponent = require('./Snake');
+
+console.log(snakeComponent);
 
 document.addEventListener('keydown', (event) => {
   const keyName = event.key;
   switch (keyName) {
     case 'ArrowUp':
-      snake.direction = "up"
+      snake.direction = 'up'
       break;
     case 'ArrowDown':
-      snake.direction = "down"
+      snake.direction = 'down'
       break;
     case 'ArrowLeft':
-      snake.direction = "left"
+      snake.direction = 'left'
       break;
     case 'ArrowRight':
-      snake.direction = "right"
+      snake.direction = 'right'
       break;
     default:
       break;
@@ -77,8 +32,8 @@ document.addEventListener('keydown', (event) => {
 
 function startGame() {
   myGameArea.start();
-  fruit = new component(12, 12, "green", Math.floor(Math.random() * 40) * 13, Math.floor(Math.random() * 40) * 13, "fruit");
-  snake = new component(12, 12, "#234235", 0, 0, "snake");
+  fruit = new component(12, 12, 'green', Math.floor(Math.random() * 40) * 13, Math.floor(Math.random() * 40) * 13, 'fruit');
+  snake = new component(12, 12, '#234235', 0, 0);
 
 }
 
@@ -88,7 +43,7 @@ var myGameArea = {
   canvas: (function () {
     var canvas = document.getElementById(CANVAS_ID);
     if (canvas == void 0) { // void 0 == null == undefined
-      canvas = document.createElement("canvas");
+      canvas = document.createElement('canvas');
       canvas.id = CANVAS_ID;
     }
     return canvas;
@@ -99,7 +54,7 @@ var myGameArea = {
     this.canvas.style['background-color'] = 'rgba(0,0,0,.15)';
     this.columns = this.canvas.width / colNum;
     this.rows = this.canvas.height / rowNum;
-    this.context = this.canvas.getContext("2d");
+    this.context = this.canvas.getContext('2d');
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     oldTimeStamp = Date.now();
     this.interval = requestAnimationFrame(updateGameArea);
@@ -109,7 +64,7 @@ var myGameArea = {
   }
 }
 
-function component(width, height, color, x, y, type) {
+function component(width, height, color, x, y) {
   this.width = width;
   this.height = height;
   this.x = x;
@@ -118,7 +73,7 @@ function component(width, height, color, x, y, type) {
   this.update = function (element) {
     var ctx = myGameArea.context;
     ctx.fillStyle = color;
-    if (element == "snake") {
+    if (element == 'snake') {
 
       for (let i = 0; i < this.size.length; i++) {
         this.size[i] = this.size[i + 1];
@@ -167,12 +122,11 @@ function updateGameArea(timestamp) {
   secondsPassed = Math.min(secondsPassed, 0.1);
   myGameArea.clear();
   snake.newPos(secondsPassed);
-  snake.update("snake");
+  snake.update('snake');
   fruit.update();
 
   if (snake.x == fruit.x && snake.y == fruit.y) {
     this.score++
-    console.log(this.score);
     fruit.x = Math.floor(Math.random() * 40) * 13;
     fruit.y = Math.floor(Math.random() * 40) * 13;
   }
