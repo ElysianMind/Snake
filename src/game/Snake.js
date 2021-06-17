@@ -1,13 +1,13 @@
-var component = required('./Component')
+var Component = require('./Component')
 
-class snake extends Component {
+module.exports = class Snake extends Component {
   constructor(color) {
     super();
     this.color = color;
     this.size = [];
     this.lives = 3;
   }
-  Update()
+  update()
   {
      var ctx = myGameArea.context;
      ctx.fillStyle = this.color;
@@ -31,6 +31,8 @@ class snake extends Component {
          break;
     }
   }
+//static funtions uppercase
 }
 
-export default snake;
+
+//module.exports = Snake;

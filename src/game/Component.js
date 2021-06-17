@@ -1,4 +1,4 @@
-export default class Component {
+class Component {
   constructor() {
     this.x = 0;
     this.y = 0;
@@ -7,3 +7,4 @@ export default class Component {
   }
 }
 
+module.exports = Component;

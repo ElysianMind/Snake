@@ -1,4 +1,4 @@
-const core = require('./game/core');
+const core = require('./game/Core');
 core.start();
 
 // this will enforce webpack to hot reload.

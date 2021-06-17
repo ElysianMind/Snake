@@ -1,11 +1,14 @@
 // -App.js -------------------------------------------------------------------------------------------------------------
 //console.log(' %c SNAKE 2021', 'font-weight: bold; font-size: 14px;color: rgba(0,0,0,1); text-shadow: 1px 1px 0 rgb(200, 200,200)');
+const Snake = require('./Snake');
+new Snake('red');
 var fruit;
 var snake;
 var score = 0;
 var colNum = 40;
 var rowNum = 40;
 var movementSpeed = 50;
+
 
 document.addEventListener('keydown', (event) => {
   const keyName = event.key;

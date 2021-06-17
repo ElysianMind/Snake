@@ -1,4 +1,4 @@
-   const component = required('./Component')
+   const component = require('./Component')
 
    class fruit extends Component {
      constructor(color) {
@@ -13,6 +13,4 @@
       }
    }
 
-module.exports = () =>{
-  fruit
-}
+module.exports = fruit
