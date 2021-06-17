@@ -6,9 +6,6 @@ var score = 0;
 var colNum = 40;
 var rowNum = 40;
 var movementSpeed = 50;
-var snakeComponent = require('./Snake');
-
-console.log(snakeComponent);
 
 document.addEventListener('keydown', (event) => {
   const keyName = event.key;
