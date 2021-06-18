@@ -39,7 +39,7 @@ module.exports = class Snake extends Component {
       this.y = Gamespace.canvas.height;
     }
   }
-  NewPos(direction, sec) {
+  NewPos(direction) {
      switch (direction) {
        case 'right':
          this.x +=  13;

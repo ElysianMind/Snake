@@ -12,21 +12,21 @@ var rowNum = 40;
 
 document.addEventListener('keydown', (event) => {
   const keyName = event.key;
-  switch (keyName) {
-    case 'ArrowUp':
-      directions = 'up'
-      break;
-    case 'ArrowDown':
-      directions = 'down'
-      break;
-    case 'ArrowLeft':
-      directions = 'left'
-      break;
-    case 'ArrowRight':
-      directions = 'right'
-      break;
-    default:
-      break;
+  if (keyName == 'ArrowUp' && directions != 'down')
+  {
+    directions = 'up'
+  }
+  else if(keyName == 'ArrowDown' && directions != 'up')
+  {
+    directions = 'down'
+  }
+  else if  (keyName == 'ArrowLeft' && directions != 'right')
+  {
+    directions = 'left'
+  }
+  else if  (keyName == 'ArrowRight' && directions != 'left')
+  {
+   directions = 'right'
   }
 });
 
@@ -75,8 +75,8 @@ function update(secondsPassed){
 }
 
 function updateGameArea(timestamp) {
-  snake.Intersect()
-  requestAnimationFrame(updateGameArea);
+  
+  requestAnimationFrame(updateGameArea)
 
   //console.log((timestamp - oldTimeStamp) + "ms")
   const secondsPassed = (timestamp - oldTimeStamp) / 1000;
