@@ -2,7 +2,7 @@
 //console.log(' %c SNAKE 2021', 'font-weight: bold; font-size: 14px;color: rgba(0,0,0,1); text-shadow: 1px 1px 0 rgb(200, 200,200)');
 const Snake = require('./Snake');
 const Fruit = require('./Fruit');
-const GameScene = require('./GameArea');
+//const GameScene = require('./GameArea');
 var fruit;
 var snake;
 var directions;
@@ -33,7 +33,7 @@ document.addEventListener('keydown', (event) => {
 function startGame() {
   myGameArea.start();
   fruit = new Fruit('green');
-  snake = new Snake('#234235', 4);
+  snake = new Snake('#234235', 6);
 }
 
 var oldTimeStamp = 0;

@@ -65,12 +65,9 @@ module.exports = class Snake extends Component {
         if(this.size[0].x == this.size[i].x && this.size[0].y == this.size[i].y){
             return true
         }
-      } 
+      }
     }
-    return false 
+    return false;
   }
-//static funtions uppercase
 }
 
-
-//module.exports = Snake;

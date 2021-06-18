@@ -5,7 +5,7 @@
        super();
        this.color = color;
      }
-    Update() 
+    Update()
     {
       this.x = Math.floor(Math.random() * 40) * 13;
       this.y = Math.floor(Math.random() * 40) * 13;
