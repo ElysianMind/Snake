@@ -39,33 +39,27 @@ module.exports = class Snake extends Component {
       this.y = Gamespace.canvas.height;
     }
   }
-  NewPos(direction) {
+  NewPos(direction, movecol) {
      switch (direction) {
        case 'right':
-         this.x +=  13;
+         this.x +=  movecol;
          break;
        case 'left':
-         this.x -=  13;
+         this.x -=  movecol;
          break;
        case 'up':
-         this.y -=  13;
+         this.y -=  movecol;
          break;
        case 'down':
-         this.y +=  13;
+         this.y +=  movecol;
          break;
        default:
          break;
     }
   }
   Intersect(){
-    for(let i = 0; i < this.size.length; i++){
-      if(i == 0){}
-      else
-      {
-        if(this.size[0].x == this.size[i].x && this.size[0].y == this.size[i].y){
-            return true
-        }
-      }
+    for(let i = 4; i < this.size.length; i++){
+        if(this.size[0].x == this.size[i].x && this.size[0].y == this.size[i].y) return true
     }
     return false;
   }

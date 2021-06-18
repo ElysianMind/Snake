@@ -1,5 +1,5 @@
 // -App.js -------------------------------------------------------------------------------------------------------------
-//console.log(' %c SNAKE 2021', 'font-weight: bold; font-size: 14px;color: rgba(0,0,0,1); text-shadow: 1px 1px 0 rgb(200, 200,200)');
+
 const Snake = require('./Snake');
 const Fruit = require('./Fruit');
 //const GameScene = require('./GameArea');
@@ -62,9 +62,9 @@ var myGameArea = {
   }
 }
 
-function update(secondsPassed){
+function update(){
    myGameArea.clear();
-   snake.NewPos(directions,secondsPassed);
+   snake.NewPos(directions, (myGameArea.canvas.width/colNum));
    snake.Update(score);
    fruit.Draw(myGameArea);
    snake.Draw(myGameArea);
@@ -75,10 +75,9 @@ function update(secondsPassed){
 }
 
 function updateGameArea(timestamp) {
-  
+  if(snake.Intersect())  return alert('game over');
   requestAnimationFrame(updateGameArea)
 
-  //console.log((timestamp - oldTimeStamp) + "ms")
   const secondsPassed = (timestamp - oldTimeStamp) / 1000;
   if( secondsPassed < 1 / snake.movementSpeed) return
 
