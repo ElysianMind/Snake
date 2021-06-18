@@ -1,16 +1,14 @@
-   const component = require('./Component')
+   const Component = require('./Component')
 
-   class fruit extends Component {
+   module.exports = class fruit extends Component {
      constructor(color) {
        super();
        this.color = color;
      }
-     Update() 
+     Update(Gamespace) 
      {
-        var ctx = myGameArea.context;
-        ctx.fillStyle = color;
+        var ctx = Gamespace.context;
+        ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
       }
    }
-
-module.exports = fruit

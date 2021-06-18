@@ -1,4 +1,4 @@
-class Component {
+module.exports = class Component {
   constructor() {
     this.x = 0;
     this.y = 0;
@@ -6,5 +6,3 @@ class Component {
     this.height = 12;
   }
 }
-
-module.exports = Component;
