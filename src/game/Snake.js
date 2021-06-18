@@ -57,6 +57,18 @@ module.exports = class Snake extends Component {
          break;
     }
   }
+  Intersect(){
+    for(let i = 0; i < this.size.length; i++){
+      if(i == 0){}
+      else
+      {
+        if(this.size[0].x == this.size[i].x && this.size[0].y == this.size[i].y){
+            return true
+        }
+      } 
+    }
+    return false 
+  }
 //static funtions uppercase
 }
 

@@ -71,12 +71,12 @@ function update(secondsPassed){
   if (snake.x >= fruit.x && snake.x <= (fruit.x + fruit.width) && snake.y >= fruit.y && snake.y <= (fruit.y + fruit.height)) {
     score++
     fruit.Update();
-  } 
+  }
 }
 
 function updateGameArea(timestamp) {
-  
-  requestAnimationFrame(updateGameArea)
+  snake.Intersect()
+  requestAnimationFrame(updateGameArea);
 
   //console.log((timestamp - oldTimeStamp) + "ms")
   const secondsPassed = (timestamp - oldTimeStamp) / 1000;
