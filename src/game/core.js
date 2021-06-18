@@ -2,6 +2,7 @@
 //console.log(' %c SNAKE 2021', 'font-weight: bold; font-size: 14px;color: rgba(0,0,0,1); text-shadow: 1px 1px 0 rgb(200, 200,200)');
 const Snake = require('./Snake');
 const Fruit = require('./Fruit');
+const GameScene = require('./GameArea');
 var fruit;
 var snake;
 var directions;
@@ -32,10 +33,10 @@ document.addEventListener('keydown', (event) => {
 function startGame() {
   myGameArea.start();
   fruit = new Fruit('green');
-  snake = new Snake('#234235');
+  snake = new Snake('#234235', 4);
 }
 
-var oldTimeStamp;
+var oldTimeStamp = 0;
 var CANVAS_ID = 'my-canvas';
 var myGameArea = {
   canvas: (function () {
@@ -54,7 +55,6 @@ var myGameArea = {
     this.rows = this.canvas.height / rowNum;
     this.context = this.canvas.getContext('2d');
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-    oldTimeStamp = Date.now();
     requestAnimationFrame(updateGameArea);
   },
   clear: function () {
@@ -62,22 +62,30 @@ var myGameArea = {
   }
 }
 
-function updateGameArea(timestamp) {
-  //console.log((timestamp - oldTimeStamp) + "ms")
-  var secondsPassed = (timestamp - oldTimeStamp) / 1000;
-  secondsPassed = Math.min(secondsPassed, 0.1);
-  myGameArea.clear();
-  snake.NewPos(directions,secondsPassed);
-  snake.Update(myGameArea, score);
-  fruit.Update(myGameArea);
-
+function update(secondsPassed){
+   myGameArea.clear();
+   snake.NewPos(directions,secondsPassed);
+   snake.Update(score);
+   fruit.Draw(myGameArea);
+   snake.Draw(myGameArea);
   if (snake.x >= fruit.x && snake.x <= (fruit.x + fruit.width) && snake.y >= fruit.y && snake.y <= (fruit.y + fruit.height)) {
     score++
-    fruit.x = Math.floor(Math.random() * 40) * 13;
-    fruit.y = Math.floor(Math.random() * 40) * 13;
-  }
-  oldTimeStamp = timestamp;
+    fruit.Update();
+  } 
+}
+
+function updateGameArea(timestamp) {
+  
   requestAnimationFrame(updateGameArea)
+
+  //console.log((timestamp - oldTimeStamp) + "ms")
+  const secondsPassed = (timestamp - oldTimeStamp) / 1000;
+  if( secondsPassed < 1 / snake.movementSpeed) return
+
+  update(secondsPassed);
+  
+  oldTimeStamp = timestamp;
+  
 }
 
 // -App.js ----------------------------------------------------------------------------------------------------------EOF

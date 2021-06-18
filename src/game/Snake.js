@@ -1,31 +1,32 @@
 var Component = require('./Component')
 
 module.exports = class Snake extends Component {
-  constructor(color) {
+  constructor(color, speed) {
     super();
-    this.movementSpeed = 100;
+    this.movementSpeed = speed;
     this.color = color;
     this.size = [];
     this.lives = 3;
   }
-  Update(Gamespace, score)
+  Update(score)
   {
-     var ctx = Gamespace.context;
-     ctx.fillStyle = this.color;
-     
     for (let i = 0; i < this.size.length-1; i++) {
-       this.size[i] = this.size[i + 1];
+      this.size[i] = this.size[i + 1];
     }
 
     this.size[score-1] = {x: this.x, y: this.y}
-    
-    for(let i = 0; i < this.size.length - 1; i++){
-      ctx.fillRect(this.size[i].x, this.size[i].y, this.width, this.height);
-    }
+  }
+  Draw(Gamespace) {
+    var ctx = Gamespace.context;
+    ctx.fillStyle = this.color;
+  
+   for(let i = 0; i < this.size.length - 1; i++){
+     ctx.fillRect(this.size[i].x, this.size[i].y, this.width, this.height);
+   }
 
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+   ctx.fillRect(this.x, this.y, this.width, this.height);
 
-    if (this.x > Gamespace.canvas.width) {
+   if (this.x > Gamespace.canvas.width) {
       this.x = 0;
     }
     if (this.y > Gamespace.canvas.height) {
@@ -37,21 +38,20 @@ module.exports = class Snake extends Component {
     if (this.y < 0) {
       this.y = Gamespace.canvas.height;
     }
-
   }
   NewPos(direction, sec) {
      switch (direction) {
        case 'right':
-         this.x +=  this.movementSpeed * sec;
+         this.x +=  13;
          break;
        case 'left':
-         this.x -=  this.movementSpeed * sec;
+         this.x -=  13;
          break;
        case 'up':
-         this.y -=  this.movementSpeed * sec;
+         this.y -=  13;
          break;
        case 'down':
-         this.y +=  this.movementSpeed * sec;
+         this.y +=  13;
          break;
        default:
          break;

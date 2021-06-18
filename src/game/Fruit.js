@@ -5,10 +5,15 @@
        super();
        this.color = color;
      }
-     Update(Gamespace) 
-     {
-        var ctx = Gamespace.context;
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-      }
+    Update() 
+    {
+      this.x = Math.floor(Math.random() * 40) * 13;
+      this.y = Math.floor(Math.random() * 40) * 13;
+    }
+    Draw(Gamespace)
+    {
+      var ctx = Gamespace.context;
+      ctx.fillStyle = this.color;
+      ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
    }
